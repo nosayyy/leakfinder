@@ -1,0 +1,30 @@
+rules:
+  - id: aws-access-key
+    description: AWS Access Key ID
+    regex: 'AKIA[0-9A-Z]{16}'
+    severity: high
+
+  - id: github-token
+    description: GitHub Personal Access Token
+    regex: 'ghp_[A-Za-z0-9]{36}'
+    severity: high
+
+  - id: private-key
+    description: Private key header
+    regex: '-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----'
+    severity: critical
+
+  - id: jwt
+    description: JSON Web Token
+    regex: 'eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+'
+    severity: medium
+
+  - id: generic-api-key
+    description: Hardcoded API key
+    regex: '(?i)api[_-]?key\s*[:=]\s*["'']([A-Za-z0-9_\-]{16,})["'']'
+    severity: medium
+
+  - id: generic-password
+    description: Hardcoded password
+    regex: '(?i)password\s*[:=]\s*["'']([^"''\s]{4,})["'']'
+    severity: medium
