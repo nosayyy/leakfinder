@@ -1,1 +1,0 @@
-leakfinder_cli
