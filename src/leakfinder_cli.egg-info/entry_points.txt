@@ -1,0 +1,2 @@
+[console_scripts]
+leakfinder = leakfinder_cli.cli:main

@@ -10,11 +10,11 @@ from .report import Reporter
 from .rules import RuleSet
 from .scanner import Scanner
 
-default_rules = files("leakfinder") / "data" / "rules.yaml"
+default_rules = files("leakfinder_cli") / "data" / "rules.yaml"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        prog="leakfinder",
+        prog="leakfinder_cli",
         description="Find secrets in source code.",
     )
     parser.add_argument("path", help="Directory to scan")

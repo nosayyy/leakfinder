@@ -1,0 +1,6 @@
+PyYAML>=6.0
+pathspec>=0.12
+
+[dev]
+pytest>=8
+build>=1.0
