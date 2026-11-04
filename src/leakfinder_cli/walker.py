@@ -7,7 +7,6 @@ from typing import Iterator
 
 import pathspec
 
-
 class Walker:
     def __init__(self, root: str | Path,
         skip_dirs: tuple[str, ...] = (
@@ -26,8 +25,6 @@ class Walker:
         self.skip_dirs: set[str] = set(skip_dirs)
         self.skip_exts: set[str] = set(skip_exts)
         self.max_size: int = max_size
-
-        # читаем .gitignore из корня проекта (если он есть)
         self.spec = self._read_gitignore()
 
     def _read_gitignore(self):
@@ -40,7 +37,6 @@ class Walker:
 
     def walk(self) -> Iterator[str]:
         for dirpath, dirnames, filenames in os.walk(self.root):
-            # обрезаем dirnames -> os.walk не будет заходить в эти папки
             dirnames[:] = [
                 d for d in dirnames
                 if d not in self.skip_dirs
@@ -53,19 +49,17 @@ class Walker:
                     yield path
 
     def _is_ignored(self, path: str, is_dir: bool = False) -> bool:
-        """True, если путь совпал с правилом из .gitignore."""
         if self.spec is None:
             return False
 
-        # путь относительно корня, в git-стиле (через /)
         rel = os.path.relpath(path, self.root).replace(os.sep, '/')
         if is_dir:
-            rel += '/'   # чтобы паттерны вида "build/" матчили папки
+            rel += '/'
 
-        # check_file возвращает (include, index):
-        #   include is False  -> путь игнорируется
-        #   include is True   -> сработала !-негация
-        #   include is None   -> ни одно правило не подошло
+        # check_file return� (include, index:
+        #   include is False  -> path ignore�
+        #   include is True   -> it worked �!-negation
+        #   include is None   -> None of the rules worked.
         include, _ = self.spec.check_file(rel)
         return include is False
 
