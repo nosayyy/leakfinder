@@ -9,7 +9,7 @@ description = "Find secrets in source code"
 readme = "README"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = "'nosay'", email = "ona6864@gmail.com" }]
 keywords = ["secrets", "security", "scanner", "leak"]
 classifiers = [
     "Programming Language :: Python :: 3",

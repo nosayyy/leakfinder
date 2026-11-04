@@ -14,7 +14,7 @@ default_rules = files("leakfinder_cli") / "data" / "rules.yaml"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        prog="leakfinder_cli",
+        prog="leakfinder",
         description="Find secrets in source code.",
     )
     parser.add_argument("path", help="Directory to scan")
